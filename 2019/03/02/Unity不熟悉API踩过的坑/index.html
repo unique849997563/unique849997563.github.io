@@ -86,13 +86,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="禾文的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity不熟悉API踩过的坑">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/Unity不熟悉API踩过的坑/index.html">
 <meta property="og:site_name" content="禾文的博客">
+<meta property="og:description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-02T08:42:44.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="禾文的博客">
+<meta name="twitter:title" content="Unity不熟悉API踩过的坑">
+<meta name="twitter:description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
 
 
 
@@ -122,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/02/Unity不熟悉API踩过的坑/">
 
 
 
 
 
-  <title>禾文的博客</title>
+  <title>Unity不熟悉API踩过的坑 | 禾文的博客</title>
   
 
 
@@ -147,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -221,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -253,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/02/Unity不熟悉API踩过的坑/" itemprop="url">Unity不熟悉API踩过的坑</a></h1>
+          <h1 class="post-title" itemprop="name headline">Unity不熟悉API踩过的坑</h1>
         
 
         <div class="post-meta">
@@ -299,146 +300,10 @@
           
 
           
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例：
-camera.cullingMask = 1 &lt;&lt; x;  // 渲染x层 
-camera.cullingMask = ~(1 &lt;&lt; x);  // 渲染除去层x的所有层
-ca
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/02/Unity不熟悉API踩过的坑/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="禾文">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="禾文的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/02/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T15:53:47+08:00">
-                2019-03-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T11:25:50+08:00">
-                2019-02-28
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
           
 
           
@@ -458,18 +323,22 @@ ca
       
 
       
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/02/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h2 id="Camera设置渲染层级问题"><a href="#Camera设置渲染层级问题" class="headerlink" title="Camera设置渲染层级问题"></a>Camera设置渲染层级问题</h2><p>如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例：</p>
+<p>camera.cullingMask = 1 &lt;&lt; x;  // 渲染x层 </p>
+<p>camera.cullingMask = ~(1 &lt;&lt; x);  // 渲染除去层x的所有层</p>
+<p>camera.cullingMask &amp;= ~(1 &lt;&lt; x); // 关闭层x</p>
+<p>camera.cullingMask |= (1 &lt;&lt; x);  // 打开层x</p>
+<p><del>camera.cullingMask = 1 &lt;&lt; x + 1 &lt;&lt; y + 1 &lt;&lt; z; // 摄像机只显示第x层,y层,z层.</del>（最开始以为运算顺序是1 &lt;&lt;（ x + 1 ）&lt;&lt;(y + 1) &lt;&lt; z)</p>
+<p>但是最后一个这样设置，如果想渲染多个层级真的是这样的吗？我Unity5.6代码这样写之后没有得到我想要的结果。然后看了一下cullingMask 设置参数的原理，是用的位运算来确定哪些层级被选中，记得大学老师讲C++的时候讲过这种方法。想了一下，觉得参数应该这样设置：</p>
+<p><strong>camera.cullingMask = （1 &lt;&lt; x ）+ （1&lt;&lt; y ）+ （1 &lt;&lt; z）; // 摄像机只显示第x层,y层,z层.</strong></p>
+<p>试了一下，是我想要的效果。</p>
+<h2 id="Transform-SetParent第二个参数的坑"><a href="#Transform-SetParent第二个参数的坑" class="headerlink" title="Transform.SetParent第二个参数的坑"></a>Transform.SetParent第二个参数的坑</h2><p>可能是当时学习Unity的时候没有仔细，后来才发现这样的问题：</p>
+<p><a href="https://blog.csdn.net/qq_33461689/article/details/79277326" target="_blank" rel="noopener">Unity中Transform.SetParent第二个参数的使用。</a></p>
+<h2 id="Unity编辑器下某些方法执行结果与预期不同"><a href="#Unity编辑器下某些方法执行结果与预期不同" class="headerlink" title="Unity编辑器下某些方法执行结果与预期不同"></a>Unity编辑器下某些方法执行结果与预期不同</h2><p>发现这个问题是想学习一下编辑器的东西：</p>
+<p><a href="https://blog.csdn.net/qq_33461689/article/details/80083913" target="_blank" rel="noopener">Unity编辑器下某些方法执行结果与预期不同</a></p>
+<h2 id="C-中Split的使用"><a href="#C-中Split的使用" class="headerlink" title="C#中Split的使用"></a>C#中Split的使用</h2><p><a href="https://blog.csdn.net/qq_33461689/article/details/85108348" target="_blank" rel="noopener">C#中Split的使用</a></p>
+<p>来源：CSDN<br>原文：<a href="https://blog.csdn.net/qq_33461689/article/details/85011689" target="_blank" rel="noopener">https://blog.csdn.net/qq_33461689/article/details/85011689</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
       
     </div>
     
@@ -479,6 +348,35 @@ ca
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏两块钱买糖吃！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Reward/wechat.jpg" alt="禾文 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/Reward/alipay.jpg" alt="禾文 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -486,12 +384,28 @@ ca
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -501,10 +415,11 @@ ca
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -512,6 +427,10 @@ ca
 
 
           
+
+  
+
+
 
         </div>
         
@@ -532,8 +451,17 @@ ca
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -608,6 +536,22 @@ ca
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera设置渲染层级问题"><span class="nav-number">1.</span> <span class="nav-text">Camera设置渲染层级问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transform-SetParent第二个参数的坑"><span class="nav-number">2.</span> <span class="nav-text">Transform.SetParent第二个参数的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unity编辑器下某些方法执行结果与预期不同"><span class="nav-number">3.</span> <span class="nav-text">Unity编辑器下某些方法执行结果与预期不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中Split的使用"><span class="nav-number">4.</span> <span class="nav-text">C#中Split的使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -768,6 +712,10 @@ ca
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
