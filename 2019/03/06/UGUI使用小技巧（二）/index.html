@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="UGUI,">
 
 
 
@@ -86,17 +86,22 @@
 
 
 
-<meta name="description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
+<meta name="description" content="Slider的简单介绍： 在Unity中，经常会使用Slider来做滑动选择物品数量的功能。下图是Slider下的默认属性设置：  常用属性： 上边一系列的属性跟Button的属性是差不多的，都是一些基本设置。 Direction：是用来设置滑块滑动方向的，有四个选项，自己设置一下就知道什么意思了。 MinValue：滑块能够移动的最小值。 MaxValue：滑块能够移动的最大值。 WholeNu">
+<meta name="keywords" content="UGUI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity不熟悉API踩过的坑">
-<meta property="og:url" content="http://yoursite.com/2019/03/02/Unity不熟悉API踩过的坑/index.html">
+<meta property="og:title" content="Slider的使用">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/UGUI使用小技巧（二）/index.html">
 <meta property="og:site_name" content="禾文的博客">
-<meta property="og:description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
+<meta property="og:description" content="Slider的简单介绍： 在Unity中，经常会使用Slider来做滑动选择物品数量的功能。下图是Slider下的默认属性设置：  常用属性： 上边一系列的属性跟Button的属性是差不多的，都是一些基本设置。 Direction：是用来设置滑块滑动方向的，有四个选项，自己设置一下就知道什么意思了。 MinValue：滑块能够移动的最小值。 MaxValue：滑块能够移动的最大值。 WholeNu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-02T08:42:44.627Z">
+<meta property="og:image" content="https://img-blog.csdn.net/2018061120512320?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzNDYxNjg5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:updated_time" content="2019-03-06T01:50:14.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unity不熟悉API踩过的坑">
-<meta name="twitter:description" content="Camera设置渲染层级问题如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例： camera.cullingMask = 1 &amp;lt;&amp;lt; x;  // 渲染x层  camera.cullingMask = ~(1 &amp;lt;&amp;lt; x);  // 渲染除去层x的所有层 camera.cullingMask &amp;amp;= ~(1 &amp;lt;&amp;lt; x); // 关闭层x c">
+<meta name="twitter:title" content="Slider的使用">
+<meta name="twitter:description" content="Slider的简单介绍： 在Unity中，经常会使用Slider来做滑动选择物品数量的功能。下图是Slider下的默认属性设置：  常用属性： 上边一系列的属性跟Button的属性是差不多的，都是一些基本设置。 Direction：是用来设置滑块滑动方向的，有四个选项，自己设置一下就知道什么意思了。 MinValue：滑块能够移动的最小值。 MaxValue：滑块能够移动的最大值。 WholeNu">
+<meta name="twitter:image" content="https://img-blog.csdn.net/2018061120512320?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzNDYxNjg5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -106,7 +111,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -126,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/02/Unity不熟悉API踩过的坑/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/06/UGUI使用小技巧（二）/">
 
 
 
 
 
-  <title>Unity不熟悉API踩过的坑 | 禾文的博客</title>
+  <title>Slider的使用 | 禾文的博客</title>
   
 
 
@@ -197,12 +202,42 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
           </a>
         </li>
       
@@ -239,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/Unity不熟悉API踩过的坑/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/UGUI使用小技巧（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="禾文">
@@ -256,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Unity不熟悉API踩过的坑</h1>
+          <h1 class="post-title" itemprop="name headline">Slider的使用</h1>
         
 
         <div class="post-meta">
@@ -268,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T16:35:33+08:00">
-                2019-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T09:43:19+08:00">
+                2019-03-06
               </time>
             
 
@@ -284,15 +319,47 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-02T16:42:44+08:00">
-                2019-03-02
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-06T09:50:14+08:00">
+                2019-03-06
               </time>
             
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/UGUI使用/" itemprop="url" rel="index">
+                    <span itemprop="name">UGUI使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/UGUI使用小技巧（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/UGUI使用小技巧（二）/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -323,21 +390,27 @@
       
 
       
-        <h2 id="Camera设置渲染层级问题"><a href="#Camera设置渲染层级问题" class="headerlink" title="Camera设置渲染层级问题"></a>Camera设置渲染层级问题</h2><p>如果想动态设置Camera的渲染层级，在网上搜索大概都有这样几个示例：</p>
-<p>camera.cullingMask = 1 &lt;&lt; x;  // 渲染x层 </p>
-<p>camera.cullingMask = ~(1 &lt;&lt; x);  // 渲染除去层x的所有层</p>
-<p>camera.cullingMask &amp;= ~(1 &lt;&lt; x); // 关闭层x</p>
-<p>camera.cullingMask |= (1 &lt;&lt; x);  // 打开层x</p>
-<p><del>camera.cullingMask = 1 &lt;&lt; x + 1 &lt;&lt; y + 1 &lt;&lt; z; // 摄像机只显示第x层,y层,z层.</del>（最开始以为运算顺序是1 &lt;&lt;（ x + 1 ）&lt;&lt;(y + 1) &lt;&lt; z)</p>
-<p>但是最后一个这样设置，如果想渲染多个层级真的是这样的吗？我Unity5.6代码这样写之后没有得到我想要的结果。然后看了一下cullingMask 设置参数的原理，是用的位运算来确定哪些层级被选中，记得大学老师讲C++的时候讲过这种方法。想了一下，觉得参数应该这样设置：</p>
-<p><strong>camera.cullingMask = （1 &lt;&lt; x ）+ （1&lt;&lt; y ）+ （1 &lt;&lt; z）; // 摄像机只显示第x层,y层,z层.</strong></p>
-<p>试了一下，是我想要的效果。</p>
-<h2 id="Transform-SetParent第二个参数的坑"><a href="#Transform-SetParent第二个参数的坑" class="headerlink" title="Transform.SetParent第二个参数的坑"></a>Transform.SetParent第二个参数的坑</h2><p>可能是当时学习Unity的时候没有仔细，后来才发现这样的问题：</p>
-<p><a href="https://blog.csdn.net/qq_33461689/article/details/79277326" target="_blank" rel="noopener">Unity中Transform.SetParent第二个参数的使用。</a></p>
-<h2 id="Unity编辑器下某些方法执行结果与预期不同"><a href="#Unity编辑器下某些方法执行结果与预期不同" class="headerlink" title="Unity编辑器下某些方法执行结果与预期不同"></a>Unity编辑器下某些方法执行结果与预期不同</h2><p>发现这个问题是想学习一下编辑器的东西：</p>
-<p><a href="https://blog.csdn.net/qq_33461689/article/details/80083913" target="_blank" rel="noopener">Unity编辑器下某些方法执行结果与预期不同</a></p>
-<h2 id="C-中Split的使用"><a href="#C-中Split的使用" class="headerlink" title="C#中Split的使用"></a>C#中Split的使用</h2><p><a href="https://blog.csdn.net/qq_33461689/article/details/85108348" target="_blank" rel="noopener">C#中Split的使用</a></p>
-<p>来源：CSDN<br>原文：<a href="https://blog.csdn.net/qq_33461689/article/details/85011689" target="_blank" rel="noopener">https://blog.csdn.net/qq_33461689/article/details/85011689</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+        <p>Slider的简单介绍：</p>
+<p>在Unity中，经常会使用Slider来做滑动选择物品数量的功能。下图是Slider下的默认属性设置：</p>
+<p><img src="https://img-blog.csdn.net/2018061120512320?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzNDYxNjg5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>常用属性：</p>
+<p>上边一系列的属性跟Button的属性是差不多的，都是一些基本设置。</p>
+<p>Direction：是用来设置滑块滑动方向的，有四个选项，自己设置一下就知道什么意思了。</p>
+<p>MinValue：滑块能够移动的最小值。</p>
+<p>MaxValue：滑块能够移动的最大值。</p>
+<p>WholeNumbers：是否为整数。</p>
+<p>Value：当前的值，取值在MinValue到MaxValue之间，如果WholeNumbers设置为true，则Value为整数。</p>
+<p>在Slider中，可以监听onValueChanged事件，当Slider的Value值发生改变时会触发事件。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Slider m_testSlider;</span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span> &#123;</span><br><span class="line">     m_testSlider = GetComponent&lt;Slider&gt;();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span> &#123;</span><br><span class="line">     m_testSlider.onValueChanged.AddListener(OnNumSilderChange);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnNumSilderChange</span>(<span class="params"><span class="keyword">float</span> <span class="keyword">value</span></span>)</span></span><br><span class="line"><span class="function"></span> &#123;</span><br><span class="line">     Debug.Log(<span class="keyword">value</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>​    如果你的需求是设置一些小数的话，使用Slider不需要做过多的设置，如果你最大值最小值有什么需求的话，找到Slider后，在初始化中修改MinValue、MaxValue的值就ok了。</p>
+<p>​    如果你的需求是设置一些整数的话，只需要将WholeNumbers设置为true。</p>
+<p>​    如果你发现在Slider区域内，不能直接点击UI改变滑块的位置，检查Interactable是否设置为true。</p>
+<p>​    如果你在代码中想改变滑块的位置，在MinValue和MaxValue的合理范围内，直接修改Slider中的Value就可以了。</p>
+<p>特殊情况：</p>
+<p>​    当你的需求是设置整数，并且最小值与最大值是相同时，你会发现你的滑块是在你初始化的位置（假如你的Slider滑动是从左到右， 滑块现在的位置就在最左边），并且Slider的Value不能改变，而你又想将滑块放在最右边。</p>
+<p>​    我看到别人的解决方案是：</p>
+<p>​    添加判断，将这种情况特殊处理，比如将最小值设置为0，最大值设置为1，值设置为1。并且不要忘记将Interactable设置为false，否则Slider还可以滑动到0的位置。</p>
 
       
     </div>
@@ -345,6 +418,16 @@
     
     
 
+	<div>
+		
+			<div>
+    
+        <div style="text-align:center;color:#ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-heart"></i>　感谢您的阅读　　　　-------------</div>
+    
+</div>
+		
+	</div>
+	
     
 
     
@@ -382,6 +465,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/UGUI/" rel="tag"># UGUI</a>
+          
+        </div>
+      
 
       
       
@@ -391,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/03/06/UGUI使用小技巧（一）/" rel="next" title="Content Size Fitter的使用">
+                <i class="fa fa-chevron-left"></i> Content Size Fitter的使用
               </a>
             
           </div>
@@ -400,6 +489,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/Unity中Transform-SetParent第二个参数的使用/" rel="prev" title="Unity中Transform.SetParent第二个参数的使用">
+                Unity中Transform.SetParent第二个参数的使用 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -429,6 +522,9 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+  
 
 
 
@@ -451,17 +547,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -476,14 +563,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -513,7 +618,7 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
                 推荐阅读
@@ -522,6 +627,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://blog.csdn.net/qq_33461689" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
                   </li>
                 
               </ul>
@@ -536,22 +645,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera设置渲染层级问题"><span class="nav-number">1.</span> <span class="nav-text">Camera设置渲染层级问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transform-SetParent第二个参数的坑"><span class="nav-number">2.</span> <span class="nav-text">Transform.SetParent第二个参数的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unity编辑器下某些方法执行结果与预期不同"><span class="nav-number">3.</span> <span class="nav-text">Unity编辑器下某些方法执行结果与预期不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中Split的使用"><span class="nav-number">4.</span> <span class="nav-text">C#中Split的使用</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -624,6 +717,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -754,6 +849,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'vEdmbtAHdLWKkzQfOLW0o4NQ-gzGzoHsz',
+        appKey: 'YVy7ILfyG6YCV8HmcyzgR4To',
+        placeholder: '在这里留言！',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

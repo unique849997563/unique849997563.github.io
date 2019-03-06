@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unity3D,C#,Java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1、通过C#调用Java的方法： 在C#中添加调用的一些代码，利用Unity提供的一些接口实现调用Java！">
+<meta name="keywords" content="Unity3D,C#,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity中C#和Java的相互调用">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/Unity中C-和Java的相互调用/index.html">
+<meta property="og:site_name" content="禾文的博客">
+<meta property="og:description" content="1、通过C#调用Java的方法： 在C#中添加调用的一些代码，利用Unity提供的一些接口实现调用Java！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:updated_time" content="2019-03-06T02:28:51.917Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity中C#和Java的相互调用">
+<meta name="twitter:description" content="1、通过C#调用Java的方法： 在C#中添加调用的一些代码，利用Unity提供的一些接口实现调用Java！">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/06/Unity中C-和Java的相互调用/">
+
+
+
+
+
+  <title>Unity中C#和Java的相互调用 | 禾文的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">禾文的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/Unity中C-和Java的相互调用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="禾文">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="禾文的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unity中C#和Java的相互调用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T10:27:56+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-06T10:28:51+08:00">
+                2019-03-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity3D基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity3D基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/Unity中C-和Java的相互调用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/Unity中C-和Java的相互调用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1、通过C-调用Java的方法："><a href="#1、通过C-调用Java的方法：" class="headerlink" title="1、通过C#调用Java的方法："></a>1、通过C#调用Java的方法：</h2><p> 在C#中添加调用的一些代码，利用Unity提供的一些接口实现调用Java！</p>
+<a id="more"></a>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> JAVA_CLASS_Name = <span class="string">"com.unity3d.player.UnityPlayer"</span>;</span><br><span class="line">       <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CallJavaFunc</span>(<span class="params"><span class="keyword">string</span> javaFuncName, <span class="keyword">params</span> <span class="keyword">object</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>       &#123;</span><br><span class="line">           <span class="keyword">try</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="comment">//获取到AndroidJavaClass，至于这里为什么调用这个类，我也不是很清楚</span></span><br><span class="line">               <span class="keyword">using</span> (AndroidJavaClass jc = <span class="keyword">new</span> AndroidJavaClass(JAVA_CLASS_Name))</span><br><span class="line">               &#123;</span><br><span class="line">                   <span class="comment">//获取到Activity</span></span><br><span class="line">                   <span class="keyword">using</span> (AndroidJavaObject jo = jc.GetStatic&lt;AndroidJavaObject&gt;(<span class="string">"currentActivity"</span>))</span><br><span class="line">                   &#123;</span><br><span class="line">                       <span class="comment">//调用Java方法</span></span><br><span class="line">                       jo.Call(javaFuncName, args);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">catch</span> (System.Exception ex)</span><br><span class="line">           &#123;</span><br><span class="line">               Debug.Log(<span class="string">"callSdk error:"</span> + ex.Message);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//C#里就可以通过这个方法调用Java里的方法了</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>       &#123;</span><br><span class="line">           <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">           CallJavaFunc(<span class="string">"JavaFuncName"</span>, num);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 在java中主要是添加被调用的方法，方法名就是上边的字符串参数（JavaFuncName），参数需要一一对应！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">UnityPlayerActivity</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JavaFuncName</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Log.i(<span class="string">"C#调用了JavaFuncName，参数num:"</span>,String.valueOf(num));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 我是使用eclipse创建的android工程，java中的activity需要继承UnityPlayerActivity，继承这个activity需要在你的android中填加classes.jar包，这个包在：</p>
+<p>你Unity的安装路径\Editor\Data\PlaybackEngines\AndroidPlayer\Variations\mono\Release\Classes下，</p>
+<p>这样就可以调用Java的方法了！</p>
+<h2 id="2、通过Java调用C-的方法："><a href="#2、通过Java调用C-的方法：" class="headerlink" title="2、通过Java调用C#的方法："></a>2、通过Java调用C#的方法：</h2><p> 在Java中添加调用的一些代码，Java调用C#主要是通过Unity封装的classes.jar包里面的UnitySendMessage方</p>
+<p>法传递参数实现，因为该方法只能将一个参数传递给C#的方法，所以传递多个参数的时候可以使用json。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	JSONObject pms=<span class="keyword">new</span> JSONObject();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">//参数只能参一个，所以包装成json对象</span></span><br><span class="line">		pms.putOpt(<span class="string">"FuncName"</span>,<span class="string">"Test2"</span>);</span><br><span class="line">		pms.putOpt(<span class="string">"num"</span>,<span class="number">1</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (JSONException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//利用Unity提供的发送消息接口给Unity传递参数，</span></span><br><span class="line">	<span class="comment">//GameObject是Unity中物体的名称，</span></span><br><span class="line">	<span class="comment">//CSharpFunc是C#中方法的名称，</span></span><br><span class="line">	<span class="comment">//需要将带有CSharpFunc这个方法的C#脚本挂在GameObject这个物体上</span></span><br><span class="line">	UnityPlayer.UnitySendMessage(<span class="string">"GameObject"</span>,<span class="string">"CSharpFunc"</span>,pms.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 在C#中添加被调用的方法，如果传递过来的是多个参数，需要将参数一一解析出来使用。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//被调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CSharpFunc</span>(<span class="params"><span class="keyword">string</span> data</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    JsonData json = JsonMapper.ToObject(data);</span><br><span class="line">    <span class="keyword">string</span> num = (<span class="keyword">string</span>)json[<span class="string">"num"</span>];</span><br><span class="line">    <span class="keyword">string</span> name = (<span class="keyword">string</span>)json[<span class="string">"FuncName"</span>];</span><br><span class="line">    Debug.Log(<span class="keyword">string</span>.Format(<span class="string">"被Java方法调用了，Java方法名字是：&#123;0&#125;，参数是&#123;1&#125;"</span>,name,num));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>C#中使用json的LitJson.dll，链接: <a href="https://pan.baidu.com/s/1qZFCV9a" target="_blank" rel="noopener">https://pan.baidu.com/s/1qZFCV9a</a> 密码: vkgq</p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+		
+			<div>
+    
+        <div style="text-align:center;color:#ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-heart"></i>　感谢您的阅读　　　　-------------</div>
+    
+</div>
+		
+	</div>
+	
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏两块钱买糖吃！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Reward/wechat.jpg" alt="禾文 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/Reward/alipay.jpg" alt="禾文 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity3D/" rel="tag"># Unity3D</a>
+          
+            <a href="/tags/C/" rel="tag"># C#</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/06/Unity3D几个点击屏幕获执行相关操作的方法/" rel="next" title="Unity3D几个点击屏幕获执行相关操作的方法">
+                <i class="fa fa-chevron-left"></i> Unity3D几个点击屏幕获执行相关操作的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/Unity不熟悉API踩过的坑/" rel="prev" title="Unity不熟悉API踩过的坑">
+                Unity不熟悉API踩过的坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">禾文</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/unique849997563" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/3109057057/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_33461689" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66">
+    </iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、通过C-调用Java的方法："><span class="nav-number">1.</span> <span class="nav-text">1、通过C#调用Java的方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、通过Java调用C-的方法："><span class="nav-number">2.</span> <span class="nav-text">2、通过Java调用C#的方法：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">禾文</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'vEdmbtAHdLWKkzQfOLW0o4NQ-gzGzoHsz',
+        appKey: 'YVy7ILfyG6YCV8HmcyzgR4To',
+        placeholder: '在这里留言！',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Unity3D,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="​    本来是想学习一下ScriptableObject的，看到例子上边有CreateAssetMenu，就想到自己经常搞忘MenuItem的用法，所以整理一下！ CreateAssetMenu主要是应用在类上。添加CreateAssetMenu后，在Project面板中右键，默认就会在Create菜单下，测试了一下，这个属性是创建.asset文件用的，如果类继承MonoBehaviour或者不">
+<meta name="keywords" content="Unity3D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity编辑器的扩展，MenuItem的使用整理">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/Unity编辑器的扩展，MenuItem的使用整理/index.html">
+<meta property="og:site_name" content="禾文的博客">
+<meta property="og:description" content="​    本来是想学习一下ScriptableObject的，看到例子上边有CreateAssetMenu，就想到自己经常搞忘MenuItem的用法，所以整理一下！ CreateAssetMenu主要是应用在类上。添加CreateAssetMenu后，在Project面板中右键，默认就会在Create菜单下，测试了一下，这个属性是创建.asset文件用的，如果类继承MonoBehaviour或者不">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+<meta property="og:updated_time" content="2019-03-06T02:18:08.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity编辑器的扩展，MenuItem的使用整理">
+<meta name="twitter:description" content="​    本来是想学习一下ScriptableObject的，看到例子上边有CreateAssetMenu，就想到自己经常搞忘MenuItem的用法，所以整理一下！ CreateAssetMenu主要是应用在类上。添加CreateAssetMenu后，在Project面板中右键，默认就会在Create菜单下，测试了一下，这个属性是创建.asset文件用的，如果类继承MonoBehaviour或者不">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/06/Unity编辑器的扩展，MenuItem的使用整理/">
+
+
+
+
+
+  <title>Unity编辑器的扩展，MenuItem的使用整理 | 禾文的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">禾文的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/Unity编辑器的扩展，MenuItem的使用整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="禾文">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="禾文的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unity编辑器的扩展，MenuItem的使用整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T10:17:13+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-06T10:18:08+08:00">
+                2019-03-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity3D基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity3D基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/Unity编辑器的扩展，MenuItem的使用整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/Unity编辑器的扩展，MenuItem的使用整理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>​    本来是想学习一下ScriptableObject的，看到例子上边有CreateAssetMenu，就想到自己经常搞忘MenuItem的用法，所以整理一下！</p>
+<p>CreateAssetMenu主要是应用在类上。添加CreateAssetMenu后，在Project面板中右键，默认就会在Create菜单下，测试了一下，这个属性是创建.asset文件用的，如果类继承MonoBehaviour或者不继承是不会出现这个菜单的！</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">CreateAssetMenu(menuName = <span class="meta-string">"CreateScriptableObject"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreateScriptableObject</span> : <span class="title">ScriptableObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> variable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>接下来就开始整理MenuItem吧，MenuItem主要是应用在方法上。</p>
+<h3 id="1-工具栏添加菜单"><a href="#1-工具栏添加菜单" class="headerlink" title="1.工具栏添加菜单"></a>1.工具栏添加菜单</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在Unity的顶部工具栏上添加一个菜单，这个比较简单</span></span><br><span class="line">    [<span class="meta">MenuItem(<span class="meta-string">"工具栏上的菜单/我的菜单"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddBarMenu</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Debug.Log(<span class="string">"添加了一个工具栏上的菜单"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h3 id="2-Hierarchy面板或工具栏GameObject下添加菜单"><a href="#2-Hierarchy面板或工具栏GameObject下添加菜单" class="headerlink" title="2.Hierarchy面板或工具栏GameObject下添加菜单"></a>2.Hierarchy面板或工具栏GameObject下添加菜单</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在Hierarchy面板右键或工具栏GameObject下添加一个菜单</span></span><br><span class="line">  [<span class="meta">MenuItem(<span class="meta-string">"GameObject/Hierarchy面板上的菜单/物体各父物体层级的全路径"</span>,false,10)</span>]</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">PrintParent</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">      GameObject obj = Selection.activeGameObject;</span><br><span class="line">      <span class="keyword">if</span> (obj == <span class="literal">null</span>)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="comment">//本来想像利用MenuItem的第二个参数设置禁用，但是没有成功！反倒是当选择菜单的时候，两个方法都执行了！</span></span><br><span class="line">          Debug.Log(<span class="string">"没有选择GameObject！"</span>);</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">string</span> path = <span class="string">"/"</span> + obj.name;</span><br><span class="line">      <span class="keyword">while</span> (obj.transform.parent != <span class="literal">null</span>)</span><br><span class="line">      &#123;</span><br><span class="line">          obj = obj.transform.parent.gameObject;</span><br><span class="line">          path = <span class="string">"/"</span> + obj.name + path;</span><br><span class="line">      &#125;</span><br><span class="line">      Debug.Log(path);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>​    这样写在顶部的工具栏GameObject下显示没有问题，但是在Hierarchy面板右键时有一些问题。最开始我直接这样写[MenuItem(“GameObject/Hierarchy面板上的菜单/我的菜单”)]，右键的时候没有出现菜单，后来我改成另一个重载[MenuItem(“GameObject/Hierarchy面板上的菜单/我的菜单”, false, 10)]之后，最后一个参数quantity权值从10 改到 1 都会显示。我又改成这样[MenuItem(“GameObject/Hierarchy面板上的菜单/我的菜单”)]后也会显示！但是关了Unity重新启动又不显示了！我又将quantity权值添加上，从1 改到 10 都不会显示，刷新也没有用。</p>
+<p>最后修改了菜单的名字，并且quantity权值为10。然后就没有改动了，不知道这是为什么！</p>
+<h3 id="3-给菜单添加条件，设置是否启用"><a href="#3-给菜单添加条件，设置是否启用" class="headerlink" title="3.给菜单添加条件，设置是否启用"></a>3.给菜单添加条件，设置是否启用</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果没有选择Object，该项将是禁用的。</span></span><br><span class="line">[<span class="meta">MenuItem(<span class="meta-string">"工具栏上的菜单/打印选择的Object的名字"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectedObject</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"Selected Active Object is "</span> + Selection.activeObject.name + <span class="string">"."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证有没有选择Object。</span></span><br><span class="line">[<span class="meta">MenuItem(<span class="meta-string">"工具栏上的菜单/打印选择的Object的名字"</span>, true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">ValidateSelectedObject</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Selection.activeObject != <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h3 id="4-Inspector面板给组件添加菜单"><a href="#4-Inspector面板给组件添加菜单" class="headerlink" title="4.Inspector面板给组件添加菜单"></a>4.Inspector面板给组件添加菜单</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加一个Double Mass菜单选项到Rigidbody的上下文菜单（选择Rigidbody组件右键弹出菜单）</span></span><br><span class="line">[<span class="meta">MenuItem(<span class="meta-string">"CONTEXT/Rigidbody/Double Mass"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoubleMass</span>(<span class="params">MenuCommand command</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Rigidbody body = (Rigidbody)command.context;</span><br><span class="line">    body.mass = body.mass * <span class="number">2</span>;</span><br><span class="line">    Debug.Log(<span class="string">"Doubled Rigidbody's Mass to "</span> + body.mass + <span class="string">" from Context Menu."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h3 id="5-Project面板添加菜单"><a href="#5-Project面板添加菜单" class="headerlink" title="5.Project面板添加菜单"></a>5.Project面板添加菜单</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在Project面板上的菜单</span></span><br><span class="line">[<span class="meta">MenuItem(<span class="meta-string">"Assets/Project面板上的菜单/我的菜单"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AssetMenu</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"MenuItemFunc1"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h3 id="6-菜单排序"><a href="#6-菜单排序" class="headerlink" title="6.菜单排序"></a>6.菜单排序</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加菜单的先后排序</span></span><br><span class="line">[<span class="meta">MenuItem(<span class="meta-string">"工具栏上的菜单/我的菜单1"</span>, false, 2)</span>]</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MenuItemFunc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"MenuItemFunc"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h3 id="7-添加组件菜单"><a href="#7-添加组件菜单" class="headerlink" title="7.添加组件菜单"></a>7.添加组件菜单</h3><p>AddComponentMenu是应用在类上的。添加AddComponentMenu后，点击Inspector面板的Add Component按钮或者工具栏上的Component可以选择添加增加的Component菜单，注意类名必须跟文件名相同才能显示！</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AddComponentMenu(<span class="meta-string">"组件菜单/ComponentMenu"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ComponentMenuTest</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+		
+			<div>
+    
+        <div style="text-align:center;color:#ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-heart"></i>　感谢您的阅读　　　　-------------</div>
+    
+</div>
+		
+	</div>
+	
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏两块钱买糖吃！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Reward/wechat.jpg" alt="禾文 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/Reward/alipay.jpg" alt="禾文 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity3D/" rel="tag"># Unity3D</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/06/Unity中Transform-SetParent第二个参数的使用/" rel="next" title="Unity中Transform.SetParent第二个参数的使用">
+                <i class="fa fa-chevron-left"></i> Unity中Transform.SetParent第二个参数的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/Unity3D几个点击屏幕获执行相关操作的方法/" rel="prev" title="Unity3D几个点击屏幕获执行相关操作的方法">
+                Unity3D几个点击屏幕获执行相关操作的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">禾文</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/unique849997563" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/3109057057/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_33461689" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66">
+    </iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-工具栏添加菜单"><span class="nav-number">1.</span> <span class="nav-text">1.工具栏添加菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Hierarchy面板或工具栏GameObject下添加菜单"><span class="nav-number">2.</span> <span class="nav-text">2.Hierarchy面板或工具栏GameObject下添加菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-给菜单添加条件，设置是否启用"><span class="nav-number">3.</span> <span class="nav-text">3.给菜单添加条件，设置是否启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Inspector面板给组件添加菜单"><span class="nav-number">4.</span> <span class="nav-text">4.Inspector面板给组件添加菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Project面板添加菜单"><span class="nav-number">5.</span> <span class="nav-text">5.Project面板添加菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-菜单排序"><span class="nav-number">6.</span> <span class="nav-text">6.菜单排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-添加组件菜单"><span class="nav-number">7.</span> <span class="nav-text">7.添加组件菜单</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">禾文</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'vEdmbtAHdLWKkzQfOLW0o4NQ-gzGzoHsz',
+        appKey: 'YVy7ILfyG6YCV8HmcyzgR4To',
+        placeholder: '在这里留言！',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
